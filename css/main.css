@@ -1,0 +1,63 @@
+html, body {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    background-image: url("../img/grey_wash_wall.png");
+}
+.main-nav{
+    background: #eee;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+.main-nav ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+}
+.main-nav a {
+    padding: 1.0rem 2.5rem;
+    font-size: 1.3rem;
+    max-width: 140px;
+    font-weight: bold;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    /*align-items: flex-start;*/
+    color: #333;
+}
+.main-nav a:hover {
+    background: #ccc;
+}
+.main-nav a:hover i{
+    color: #388E3C;
+}
+.content-container {
+    display: flex;
+    height: 100vh; /*for ie11 */
+    min-height: 100vh;
+    flex-direction: column;
+}
+.content-body {
+    display: flex;
+    flex: 1;
+}
+.bbMain {
+    flex: 1;
+    background: rgba(220,237,200,0.3);
+    /*flex: 3 1 60%;*/
+    padding: 10px;
+    margin: 0 200px;
+}
+
+.nav-color {
+    background-color: #ccc;
+}
+.nav-color-i  {
+    color: #388E3C;
+}
+
+
+
