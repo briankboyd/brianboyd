@@ -18,7 +18,8 @@ window.bb = (function(bb, $, _) {
       });
   }
   function removeNavStyle(links) {
-    links.removeClass(bb.sel.class.navColor);
+    //links.removeClass(bb.sel.class.navColor);
+    links.attr(bb.sel.class.navColor, 'nav-color-reset');
     links.find('i').removeClass(bb.sel.class.navColorI);
   }
   function homeView() {
