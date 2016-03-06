@@ -13,25 +13,25 @@
   <nav class="main-nav">
     <ul>
       <li>
-        <a href="#" title="Home">
+        <a id="homeNav"  href="/" title="Home">
           <i class="fa fa-home"></i>
           <div>Home</div>
         </a>
       </li>
       <li>
-        <a href="#" title="Apps">
+        <a id="appsNav"  href="/apps" title="Apps">
           <i class="fa fa-floppy-o"></i>
           <div>Apps</div>
         </a>
       </li>
       <li>
-        <a href="#" title="Blog">
+        <a id="blogNav"  href="/blog" title="Blog">
           <i class="fa fa-newspaper-o"></i>
           <div>Blog</div>
         </a>
       </li>
       <li>
-        <a id="portfolioNav" href="#" title="Portfolio">
+        <a id="portfolioNav" href="portfolio" title="Portfolio">
           <i class="fa fa-suitcase"></i>
           <div>Portfolio</div>
         </a>
@@ -42,16 +42,24 @@
   <div id="content" class="content-container">
     <div class="content-body">
       <main id="bbMain" class="bbMain">
-        <div>Baaaaaaaaaaaaaaaaaaaaaaaa</div>
-        <p>1</p>
-        <p>2</p>
-        <p>3</p>
       </main>
     </div>
 
   </div>
 
 </div>
+
+<script id="homeTmpl" type="text/x-template">
+  <h2>Home</h2>
+</script>
+
+<script id="appsTmpl" type="text/x-template">
+  <h2>Apps</h2>
+</script>
+
+<script id="blogTmpl" type="text/x-template">
+  <h2>Blog</h2>
+</script>
 
 <script id="portfolioTmpl" type="text/x-template">
   <h2>Software Developer at large</h2>
