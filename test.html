@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="home" class="home-container">
+  <nav class="main-nav">
+    <ul>
+      <li id="homeNav">
+        <a href="/" title="Home">
+          <i class="fa fa-home"></i>
+          <span>Home</span>
+        </a>
+      </li>
+      <li id="appsNav">
+        <a href="/apps" title="Apps">
+          <i class="fa fa-floppy-o"></i>
+          <span>Apps</span>
+        </a>
+      </li>
+      <li id="blogNav" >
+        <a href="/blog" title="Blog">
+          <i class="fa fa-newspaper-o"></i>
+          <span>Blog</span>
+        </a>
+      </li>
+      <li id="portfolioNav">
+        <a href="/portfolio" title="Portfolio">
+          <i class="fa fa-suitcase"></i>
+          <span>Port</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <div id="content" class="content-container">
+    <div class="content-body">
+      <main id="bbMain" class="bbMain">
+      </main>
+    </div>
+
+  </div>
+
+</div>
+
+<script id="homeTmpl" type="text/x-template">
+  <h2>Home</h2>
+</script>
+
+<script id="appsTmpl" type="text/x-template">
+  <h2>Apps</h2>
+</script>
+
+<script id="blogTmpl" type="text/x-template">
+  <h2>Blog</h2>
+</script>
+
+<script id="portfolioTmpl" type="text/x-template">
+  <h2>Software Developer at large</h2>
+</script>
+
+<script src="js/lib/jquery-2.2.0.min.js"></script>
+<script>
+  function getNav() {
+    return $('.main-nav');
+  }
+  function onPopState() {
+    $(window).on('popstate', trigNavStyle);
+  }
+  function trigNavStyle() {
+
+  }
+  function navStyleSetup() {
+    var links = getNav();
+    links.on('click.nav', 'li a' , function(e) {
+      e.preventDefault();
+      var anchors = $(this).css('background-color', '#ccc').parent().siblings(); //.addClass(bb.sel.class.navColor).siblings(); //css('background-color', '#ccc').siblings(); //
+      var icons = $(this).find('i').css('color', '#388E3C').end().parent().siblings();//addClass(bb.sel.class.navColorI).parent().parent().siblings();
+      anchors.find('a').css('background-color', '#eee'); //removeClass(bb.sel.class.navColor);
+      icons.find('i').css('color', '#333'); //removeClass(bb.sel.class.navColorI);
+    });
+  }
+
+  $(function() {
+    navStyleSetup();
+  });
+</script>
+</body>
+</html>

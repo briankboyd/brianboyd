@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
   <meta http-equiv="x-ua-compatible" content="IE=edge" />
   <meta charset="UTF-8">
   <title>Brian Boyd</title>
@@ -11,31 +12,31 @@
 
 <div id="home" class="home-container">
   <nav class="main-nav">
-    <ul>
-      <li>
-        <a id="homeNav"  href="/" title="Home">
-          <i class="fa fa-home"></i>
-          <div>Home</div>
-        </a>
-      </li>
-      <li>
-        <a id="appsNav"  href="/apps" title="Apps">
-          <i class="fa fa-floppy-o"></i>
-          <div>Apps</div>
-        </a>
-      </li>
-      <li>
-        <a id="blogNav"  href="/blog" title="Blog">
-          <i class="fa fa-newspaper-o"></i>
-          <div>Blog</div>
-        </a>
-      </li>
-      <li>
-        <a id="portfolioNav" href="portfolio" title="Portfolio">
-          <i class="fa fa-suitcase"></i>
-          <div>Portfolio</div>
-        </a>
-      </li>
+    <ul class="main-nav-list">
+        <li id="homeNav" class="main-nav-item">
+          <a href="/" title="Home">
+            <i class="fa fa-home"></i>
+            <span>Home</span>
+          </a>
+        </li>
+        <li id="appsNav" class="main-nav-item">
+          <a href="/apps" title="Apps">
+            <i class="fa fa-floppy-o"></i>
+            <span>Apps</span>
+          </a>
+        </li>
+        <li id="blogNav" class="main-nav-item">
+          <a href="/blog" title="Blog">
+            <i class="fa fa-newspaper-o"></i>
+            <span>Blog</span>
+          </a>
+        </li>
+        <li id="portfolioNav" class="main-nav-item">
+          <a href="portfolio" title="Portfolio">
+            <i class="fa fa-suitcase"></i>
+            <span>Portfolio</span>
+          </a>
+        </li>
     </ul>
   </nav>
 
@@ -68,5 +69,6 @@
 <script src="js/lib/jquery-2.2.0.min.js"></script>
 <script src="js/lib/underscore-min.js"></script>
 <script src="js/app.js"></script>
+<style></style>
 </body>
 </html>

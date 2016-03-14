@@ -4,41 +4,49 @@ html, body {
     height: 100%;
     background-image: url("../img/grey_wash_wall.png");
 }
-.main-nav{
-    background: #eee;
+.home-container {
+    display: flex;
+    flex-direction: column-reverse;
+    height: 100vh; /*for ie11 */
+    min-height: 100vh;
+}
+.main-nav {
+    background-color: #eee;
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
 }
-.main-nav ul {
+.main-nav-list {
     margin: 0;
     padding: 0;
     display: flex;
-    flex-wrap: wrap;
+    flex: 1;
     list-style: none;
 }
-.main-nav a {
-    padding: 1.0rem 2.5rem;
-    font-size: 1.3rem;
-    max-width: 140px;
+.main-nav-item  {
+    padding: 0.8rem;
     font-weight: bold;
     text-decoration: none;
     display: flex;
-    flex-direction: column;
-    /*align-items: flex-start;*/
+    flex-direction: row; /*column */
+    /*align-items: center;*/
+    flex: 1;
     color: #333;
 }
-.main-nav a:hover {
-    background: #ccc;
+.main-nav i {
+    font-size: 2.0rem;
+    color: #333333;
 }
-.main-nav a:hover i{
-    color: #388E3C;
+.main-nav a {
+    text-decoration: none
 }
+.main-nav span {
+    /*visibility: hidden;*/
+    display: none;
+}
+
 .content-container {
     display: flex;
-    height: 100vh; /*for ie11 */
-    min-height: 100vh;
-    flex-direction: column;
+    flex: 1;
 }
 .content-body {
     display: flex;
@@ -47,18 +55,61 @@ html, body {
 .bbMain {
     flex: 1;
     background: rgba(220,237,200,0.3);
-    /*flex: 3 1 60%;*/
-    padding: 10px;
-    margin: 0 200px;
 }
-
 .nav-color {
     background-color: #ccc;
 }
 .nav-color-i  {
-    color: #388E3C;
+    color: #388E3C !important;
 }
 
-.nav-color-reset {
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+    .home-container {
+        display: flex;
+        flex-direction: column;
+        height: 100vh; /*for ie11 */
+        min-height: 100vh;
+    }
+    .main-nav{
+        background-color: #eee;
+        display: flex;
+        flex-direction: row;
+    }
+    .main-nav-list {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        list-style: none;
+    }
+    .main-nav-item {
+        padding: 1.0rem 2.5rem;
+        font-size: 1.3rem;
+        font-weight: bold;
+        text-decoration: none;
+        display: flex;
+        flex: 0;
+        flex-direction: column;
+        align-items: center;
+        color: #333;
+    }
+    .main-nav span {
+        display: inherit;
+        color: #333333;
+    }
+    .main-nav div:hover {
+        background: #ccc !important;
+    }
+    .main-nav div:hover i{
+        color: #388E3C !important;
+    }
+    .bbMain {
+        flex: 1;
+        background: rgba(220,237,200,0.3);
+        /*flex: 3 1 60%;*/
+        padding: 10px;
+        margin: 0 200px;
+    }
 }
-
