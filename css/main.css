@@ -1,8 +1,11 @@
+@import url('https://www.google.com/fonts#QuickUsePlace:quickUse/Family:Roboto');
 html, body {
     padding: 0;
     margin: 0;
     height: 100%;
     background-image: url("../img/grey_wash_wall.png");
+    font-family: 'Roboto', Arial, serif;
+    color: #333;
 }
 .home-container {
     display: flex;
@@ -27,17 +30,19 @@ html, body {
     font-weight: bold;
     text-decoration: none;
     display: flex;
-    flex-direction: row; /*column */
-    /*align-items: center;*/
+    flex-direction: row;
     flex: 1;
     color: #333;
+    align-items: center;
+    justify-content: center;
 }
 .main-nav i {
     font-size: 2.0rem;
-    color: #333333;
+    color: #333;
 }
 .main-nav a {
-    text-decoration: none
+    text-decoration: none;
+    text-align: center;
 }
 .main-nav span {
     /*visibility: hidden;*/
@@ -61,6 +66,35 @@ html, body {
 }
 .nav-color-i  {
     color: #388E3C !important;
+}
+
+/* Portfolio styling*/
+
+.portfolioNavList {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+.portfolioNavList li{
+    padding: 1.0rem 1.5rem;
+    font-weight: bold;
+    list-style: none;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+}
+.portfolioNavList i {
+    font-size: 2.0rem;
+    color: #333;
+}
+.portfolioDropList {
+    display: none;
+}
+
+.bbNav,.bbAside {
+    display: none;
 }
 
 /* Medium Devices, Desktops */
@@ -90,26 +124,44 @@ html, body {
         font-weight: bold;
         text-decoration: none;
         display: flex;
-        flex: 0;
+        flex: none;
         flex-direction: column;
-        align-items: center;
         color: #333;
+        cursor: pointer;
     }
     .main-nav span {
-        display: inherit;
+        display: flex;
         color: #333333;
     }
-    .main-nav div:hover {
+    .main-nav li:hover {
         background: #ccc !important;
     }
-    .main-nav div:hover i{
+    .main-nav li:hover i{
         color: #388E3C !important;
     }
     .bbMain {
-        flex: 1;
+        /*flex: 1;*/
         background: rgba(220,237,200,0.3);
-        /*flex: 3 1 60%;*/
-        padding: 10px;
-        margin: 0 200px;
+
+        /*padding: 10px;*/
+        /*margin: 0 200px;*/
+    }
+    .bbAside, .bbNav {
+        flex: 0 0 12em;
+        display: inherit;
+    }
+    .bbNav {
+        order: -1;
+    }
+    .bbNav li {
+        cursor: pointer;
+        /*min-height: 50px;*/
+        padding-right: 0;
+    }
+    .bbNav li:hover {
+        background: #ccc !important;
+    }
+    .bbNav li:hover i{
+        color: #388E3C !important;
     }
 }

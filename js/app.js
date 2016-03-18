@@ -9,7 +9,7 @@ window.bb = (function(bb, $, _) {
     escape: /\{\{-(.*?)\}\}/g
   };
 
-  function navStyleSetup() {
+  function mainNavSetup() {
     var links = getNav();
     links.on('click.nav', 'ul li' , function(e) {
       e.preventDefault();
@@ -39,42 +39,64 @@ window.bb = (function(bb, $, _) {
   }
   function portfolioView() {
     var tmpl = $(bb.sel.portfolioTmpl).html();
+    var navTmpl = $(bb.sel.portfolioSideNavTmpl).html();
+    var isMobile = ($(bb.sel.bbNav).css('display')) === 'none';
     $(bb.sel.content).html(_.template(tmpl));
+    if(isMobile) {
+
+    } else {
+      $(bb.sel.bbNav).html(_.template(navTmpl));
+    }
+
+
   }
   function homeEvents() {
-    $(bb.sel.homeNav + ' a' ).on('click', function(e) {
+    $(bb.sel.homeNav).on('click', function(e) {
       e.preventDefault();
       bb.view.home.render();
-      history.pushState({}, '', bb.view.home.name);
+      bb.evt.clearSideNav();
+      bb.evt.checkPopState(bb.view.home.name);
     });
   }
   function appsEvents() {
-    $(bb.sel.appsNav + ' a').on('click', function(e) {
+    $(bb.sel.appsNav).on('click', function(e) {
       e.preventDefault();
       bb.view.apps.render();
-      history.pushState({}, '', bb.view.apps.name);
+      bb.evt.clearSideNav();
+      bb.evt.checkPopState(bb.view.apps.name);
     });
   }
   function blogEvents() {
-    $(bb.sel.blogNav + ' a').on('click', function(e) {
+    $(bb.sel.blogNav).on('click', function(e) {
       e.preventDefault();
       bb.view.blog.render();
-      history.pushState({}, '', bb.view.blog.name);
+      bb.evt.clearSideNav();
+      bb.evt.checkPopState(bb.view.blog.name);
     });
   }
-
   function portfolioEvents() {
-    $(bb.sel.portfolioNav + ' a').on('click', function(e) {
+    $(bb.sel.portfolioNav).on('click', function(e) {
       e.preventDefault();
       bb.view.portfolio.render();
-      history.pushState({}, '', bb.view.portfolio.name);
-  });
+      bb.evt.checkPopState(bb.view.portfolio.name);
+    });
   }
-
+  function getRoute() {
+    return location.pathname.substring(1);
+  }
+  function checkPopState(routeName) {
+    if(routeName !== bb.evt.getRoute()) {
+      history.pushState({}, '', routeName);
+    }
+  }
   function loadView() {
-    var route = location.pathname.substring(1);
-    $(getNavId(route)).find('a').trigger('click.nav');
+    var route = bb.evt.getRoute();
+    $(getNavId(route)).trigger('click.nav');
+    bb.evt.clearSideNav();
     switch (route) {
+      case bb.view.home.name:
+        bb.view.home.render();
+        break;
       case bb.view.apps.name:
         bb.view.apps.render();
         break;
@@ -87,8 +109,12 @@ window.bb = (function(bb, $, _) {
       default:
         bb.view.home.render();
         history.replaceState({}, '', bb.view.home.name);
+        $(getNavId(bb.view.home.name)).trigger('click.nav');
         break;
     }
+  }
+  function clearSideNav() {
+    $(bb.sel.bbNav).html('');
   }
   function onLoad() {
     $(window).on('load', bb.evt.loadView);
@@ -97,7 +123,7 @@ window.bb = (function(bb, $, _) {
     $(window).on('popstate', bb.evt.loadView);
   }
   function init() {
-    bb.evt.navStyleSetup();
+    bb.evt.mainNavSetup();
     bb.evt.homeEvents();
     bb.evt.appsEvents();
     bb.evt.blogEvents();
@@ -122,6 +148,8 @@ window.bb = (function(bb, $, _) {
     blogTmpl: '#blogTmpl',
     portfolioNav: '#portfolioNav',
     portfolioTmpl: '#portfolioTmpl',
+    portfolioSideNavTmpl: '#portfolioSideNavTmpl',
+    bbNav: '#bbNav',
     class: {
       navColor: 'nav-color',
       navColorI: 'nav-color-i',
@@ -133,11 +161,14 @@ window.bb = (function(bb, $, _) {
     onLoad: onLoad,
     onPopState: onPopState,
     loadView: loadView,
-    navStyleSetup: navStyleSetup,
+    mainNavSetup: mainNavSetup,
     homeEvents: homeEvents,
     appsEvents: appsEvents,
     blogEvents: blogEvents,
-    portfolioEvents: portfolioEvents
+    portfolioEvents: portfolioEvents,
+    checkPopState: checkPopState,
+    getRoute: getRoute,
+    clearSideNav: clearSideNav
   };
 
   bb.view = {

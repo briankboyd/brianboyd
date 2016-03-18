@@ -6,6 +6,7 @@
   <meta charset="UTF-8">
   <title>Brian Boyd</title>
   <link rel="stylesheet" href="css/lib/font-awesome.min.css">
+  <link rel="stylesheet" href="css/fonts/font-mfizz.css">
   <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
@@ -21,7 +22,7 @@
         </li>
         <li id="appsNav" class="main-nav-item">
           <a href="/apps" title="Apps">
-            <i class="fa fa-floppy-o"></i>
+            <i class="fa fa-th"></i>
             <span>Apps</span>
           </a>
         </li>
@@ -33,7 +34,7 @@
         </li>
         <li id="portfolioNav" class="main-nav-item">
           <a href="portfolio" title="Portfolio">
-            <i class="fa fa-suitcase"></i>
+            <i class="fa fa-briefcase"></i>
             <span>Portfolio</span>
           </a>
         </li>
@@ -44,6 +45,8 @@
     <div class="content-body">
       <main id="bbMain" class="bbMain">
       </main>
+      <nav id="bbNav" class="bbNav"></nav>
+      <aside class="bbAside"></aside>
     </div>
 
   </div>
@@ -63,12 +66,36 @@
 </script>
 
 <script id="portfolioTmpl" type="text/x-template">
-  <h2>Software Developer at large</h2>
+
 </script>
+
+<script id="portfolioSideNavTmpl" type="text/x-template">
+  <ul class="portfolioNavList">
+  <li>
+      <span>Summary</span>
+  </li>
+  <li>
+    <i class="icon-java-bold"></i>
+      <span>Java</span>
+  </li>
+  <li>
+    <i class="icon-javascript"></i>
+      <span>JavaScript</span>
+  </li>
+  <li>
+    <i class="icon-nodejs"></i>
+      <span>Node JS</span>
+  </li>
+  <li>
+    <i class="icon-database-alt2"></i>
+      <span>SQL</span>
+  </li>
+  </ul>
+</script>
+
 
 <script src="js/lib/jquery-2.2.0.min.js"></script>
 <script src="js/lib/underscore-min.js"></script>
 <script src="js/app.js"></script>
-<style></style>
 </body>
 </html>
