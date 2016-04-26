@@ -7,12 +7,14 @@
   <title>Brian Boyd</title>
   <link rel="stylesheet" href="css/lib/font-awesome.min.css">
   <link rel="stylesheet" href="css/fonts/font-mfizz.css">
+  <link rel="stylesheet" href="css/lib/prism.css">
   <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
 
 <div id="home" class="home-container">
-  <nav class="main-nav">
+  <nav id="mainNav" class="main-nav">
+    <div class="bb-logo"></div>
     <ul class="main-nav-list">
         <li id="homeNav" class="main-nav-item">
           <a href="/" title="Home">
@@ -20,12 +22,12 @@
             <span>Home</span>
           </a>
         </li>
-        <li id="appsNav" class="main-nav-item">
-          <a href="/apps" title="Apps">
-            <i class="fa fa-th"></i>
-            <span>Apps</span>
-          </a>
-        </li>
+        <!--<li id="appsNav" class="main-nav-item">-->
+          <!--<a href="/apps" title="Apps">-->
+            <!--<i class="fa fa-th"></i>-->
+            <!--<span>Apps</span>-->
+          <!--</a>-->
+        <!--</li>-->
         <li id="blogNav" class="main-nav-item">
           <a href="/blog" title="Blog">
             <i class="fa fa-newspaper-o"></i>
@@ -42,19 +44,36 @@
   </nav>
 
   <div id="content" class="content-container">
-    <div class="content-body">
+    <div id="contentBody" class="content-body">
       <main id="bbMain" class="bbMain">
       </main>
       <nav id="bbNav" class="bbNav"></nav>
       <aside class="bbAside"></aside>
     </div>
-
   </div>
-
 </div>
 
 <script id="homeTmpl" type="text/x-template">
-  <h2>Home</h2>
+  <div class="flexMe flexItem flexCol">
+      <div class="flexItem">
+        <div class="home-banner">
+          <h1>Software Developer at Large</h1>
+          <h2>I'm Brian Boyd</h2>
+        </div>
+        <div id="leftHomeContent" class="home-content">
+          <p>I'm a passionate developer who loves programming. I consider myself lucky to have found something
+            that I can do for a living and it doesn't feel like work.</p>
+          <p>Take a look at my <a href="/portfolio">portfolio</a> and check out some of my featured work.</p>
+        </div>
+        <div id="centerHomeContent" class="center-home-content"><img src="img/code_snippet.png" alt=""></div>
+        <div id="rightHomeContent" class="home-content">
+          <p>I like to program in Java and JavaScript and I enjoy building applications for the web.
+          <p>I'm excited for the new ES2015 standard of JavaScript and look forward to using it in my daily workflow.</p>
+          <p>I've spent a couple of years dabbling in the arts of SQL and have a solid foundation in relational databases as well.</p>
+        </div>
+    </div>
+  </div>
+
 </script>
 
 <script id="appsTmpl" type="text/x-template">
@@ -66,36 +85,397 @@
 </script>
 
 <script id="portfolioTmpl" type="text/x-template">
-
+  <div id="portfolioDrawer" class="portfolioDrawer">
+    <i class="fa fa-chevron-left"></i>
+  </div>
 </script>
 
 <script id="portfolioSideNavTmpl" type="text/x-template">
   <ul class="portfolioNavList">
-  <li>
-      <span>Summary</span>
-  </li>
-  <li>
-    <i class="icon-java-bold"></i>
-      <span>Java</span>
-  </li>
-  <li>
-    <i class="icon-javascript"></i>
-      <span>JavaScript</span>
-  </li>
-  <li>
-    <i class="icon-nodejs"></i>
-      <span>Node JS</span>
-  </li>
-  <li>
-    <i class="icon-database-alt2"></i>
-      <span>SQL</span>
-  </li>
+    <li id="portfolioSummary" class="portfolio-nav-item">
+        <span class="md-space-left">Featured</span>
+    </li>
+    <li id="portfolioJava" class="portfolio-nav-item">
+      <i class="icon-java-bold"></i>
+        <span class="sm-space-left">Java</span>
+    </li>
+    <li id="portfolioJavascript" class="portfolio-nav-item">
+      <i class="icon-javascript"></i>
+        <span class="sm-space-left">JavaScript</span>
+    </li>
+    <!--<li id="portfolioNode" class="portfolio-nav-item">-->
+      <!--<i class="icon-nodejs"></i>-->
+        <!--<span class="sm-space-left">Node JS</span>-->
+    <!--</li>-->
+    <li id="portfolioPHP" class="portfolio-nav-item">
+      <i class="icon-php"></i>
+      <span class="sm-space-left">PHP</span>
+    </li>
+    <li id="portfolioSQL" class="portfolio-nav-item">
+      <i class="icon-database-alt2"></i>
+        <span class="sm-space-left">SQL</span>
+    </li>
   </ul>
 </script>
 
+<script id="portfolioSummaryTmpl" type="text/x-template">
+  <div class="flexItem">
+    <div class="portfolio-header">
+      <h1>Featured Work</h1>
+    </div>
+    <div>
+      <p>I'd like to show you some of my featured work. Stay awhile and look around. If you like what you see you can
+        visit my <a href="/blog">blog</a> to check out my ramblings on development.</p>
+    </div>
+  </div>
+</script>
 
+<script id="portfolioJavaTmpl" type="text/x-template">
+  <div class="flexItem">
+    <div class="portfolio-header">
+      <h1>Java</h1>
+    </div>
+
+    <div class="portfolio-content">
+      <h2>Description</h2>
+      <p>A chat application built using a Java backend with a relational database to persist data. Javascript on the frontend to make
+        asynchronous calls to restful api endpoints. I created this application with a focus on the rest api with
+        JSON aspect to learn about api design. This project is an ongoing project of mine that I continue to build features for.</p>
+      <p>Here's a <a target="blank" href="https://github.com/briankboyd/hogwash">link</a> to the source code.</p>
+  </div>
+    <div class="portfolio-content">
+      <h2>Programming Techniques</h2>
+      <p>One technique I used was code organization based on feature. For example, I grouped all the related social authentication
+        classes into an auth folder.
+      </p>
+      <p>Another technique would be the use of sockets to communicate from the client to the server
+        and marshalling the message to and from objects.</p>
+      <p>And of course, I'm using rest apis for the room creation, settings, profile updates, and much more. </p>
+
+      <p>Below is a code snippet from the authentication feature set using the enum feature in Java.
+        You can call a static method and pass a string as an argument
+        representing the provider (Facebook/Google). It then returns an object that knows how to authenticate that provider type.
+      </p>
+      <p>Here's how this particular method would be called.</p>
+      <h3>AuthProviderType.provider( "Google" ).getAuthUser();</h3>
+      <p>And here is the complete class.</p>
+    </div>
+
+
+      <pre><code class="language-java">
+
+package hogwash.auth;
+
+public enum AuthProviderType
+{
+
+GOOGLE(AuthContstant.GOOGLE)
+{
+@Override
+public AuthProvider getAuthUser()
+{
+return new AuthGoogleProvider( provider );
+}
+},
+FACEBOOK(AuthContstant.FACEBOOK)
+{
+@Override
+public AuthProvider getAuthUser()
+{
+return new AuthFacebookProvider( provider );
+}
+};
+
+private AuthProviderType( String name ) {
+this.name = name;
+}
+
+@Override
+public String toString()
+{
+return provider;
+}
+
+private String getName()
+{
+return name;
+}
+
+public abstract AuthProvider getAuthUser();
+
+public static AuthProviderType provider(String value)
+{
+for ( AuthProviderType v : values() )
+if ( v.getName().equalsIgnoreCase( value ) )
+{
+provider = value;
+return v;
+}
+
+throw new IllegalArgumentException();
+}
+
+private static String provider;
+private String        name;
+}</code></pre>
+  </div>
+</script>
+
+<script id="portfolioJavascriptTmpl" type="text/x-template">
+  <div class="flexItem">
+    <div class="portfolio-header">
+      <h1>JavaScript</h1>
+    </div>
+    <div class="portfolio-content">
+      <h2>Description</h2>
+      <p>A tic tac toe game using javascript, css, and html.</p>
+      <p>Here's a <a target="blank" href="https://github.com/briankboyd/tic-tac-toe">link</a> to the source code.</p>
+    </div>
+    <div class="portfolio-content">
+    <h2>Programming Techniques</h2>
+    <p>In this tic tac toe game, I'm using javascript click events to fire functions that process user events.
+      During this process I'm keeping track of the state of the boxes clicked through arrays and then process
+      to determine who wins if anyone does.</p>
+  </div>
+    <div class="portfolio-content">
+      <iframe src="tic-tac-toe/index.html" width="100%" height="800px" frameborder="0"></iframe>
+    </div>
+  </div>
+</script>
+
+<script id="portfolioNodeJSTmpl" type="text/x-template">
+  <div class="flexItem">
+    <div class="portfolio-header">
+      <h1>Node JS</h1>
+    </div>
+    <div class="portfolio-content">
+      <h2>Description</h2>
+      <p>A </p>
+    </div>
+    <div class="portfolio-content">
+      <h2>Programming Techniques</h2>
+      <p>In </p>
+    </div>
+  </div>
+</script>
+
+<script id="portfolioPHPTmpl" type="text/x-template">
+  <div class="flexItem">
+    <div class="portfolio-header">
+      <h1>PHP</h1>
+    </div>
+    <div class="portfolio-content">
+      <h2>Description</h2>
+      <p>PHP is a great language for server side scripting. Here I have some code snippets that shows what I can do in PHP.</p>
+    </div>
+    <div class="portfolio-content">
+      <h2>Programming Techniques</h2>
+      <p>I'm going to cover a couple main use cases for PHP.</p>
+    </div>
+
+    <div class="portfolio-content">
+      <h2>Database Connectivity</h2>
+      <p>Connecting to a database is a primary use case of php as it lets developers easily connect and dynamically build the html file.</p>
+    </div>
+    <pre><code class="language-php">
+//Setup connection variables, such as database username
+//and password
+$hostname="localhost";
+$username="your_dbusername";
+$password="your_dbpassword";
+$dbname="your_dbusername";
+$usertable="your_tablename";
+$yourfield = "your_field";
+
+//Connect to the database
+$connection = mysql_connect($hostname, $username, $password);
+mysql_select_db($dbname, $connection);
+
+//Setup our query
+$query = "SELECT * FROM $usertable";
+
+//Run the Query
+$result = mysql_query($query);
+
+//If the query returned results, loop through
+// each result
+if($result)
+{
+  while($row = mysql_fetch_array($result))
+  {
+    $name = $row["$yourfield"];
+    echo "Name: " . $name;
+
+  }
+}</code></pre>
+    <div class="portfolio-content">
+      <h2>Build html file from data</h2>
+      <p>Dynamically building an html file from data, commonly fetched from a database is a very popular feature of PHP.</p>
+      <p>As in most languages looping is a vital feature that is utilized and in PHP, vital for building html files on demand.</p>
+    </div>
+<pre><code class="language-php">
+&lt?php
+$shop = array( array("title"=>"rose", "price"=>1.25 , "number"=>15),
+array("title"=>"daisy", "price"=>0.75 , "number"=>25),
+array("title"=>"orchid", "price"=>1.15 , "number"=>7)
+);
+?&gt
+  &lt?php if (count($shop) &gt 0): ?&gt
+&lttable&gt
+  &ltthead&gt
+  &lttr&gt
+    &ltth&gt&lt?php echo implode('&lt/th&gt&ltth&gt', array_keys(current($shop))); ?&gt&lt/th&gt
+  &lt/tr&gt
+  &lt/thead&gt
+  &lttbody&gt
+  &lt?php foreach ($shop as $row): array_map('htmlentities', $row); ?&gt
+  &lttr&gt
+    &lttd&gt&lt?php echo implode('&lt/td&gt&lttd&gt', $row); ?&gt&lt/td&gt
+  &lt/tr&gt
+  &lt?php endforeach; ?&gt
+  &lt/tbody&gt
+&lt/table&gt
+&lt?php endif; ?&gt</code></pre>
+    <p>I've covered a couple use cases that displays why PHP is a solid tool in my toolbox.</p>
+    <br>
+  </div>
+</script>
+
+<script id="portfolioSQLTmpl" type="text/x-template">
+  <div class="flexItem">
+    <div class="portfolio-header">
+      <h1>SQL</h1>
+    </div>
+    <div class="portfolio-content">
+      <h2>Description</h2>
+      <p>SQL is language for manipulating databases, I plan to demonstrate a couple things I've picked up along the way.</p>
+    </div>
+    <div class="portfolio-content">
+      <h2>Programming Techniques</h2>
+      <p>I'm going to demonstrate how to create a table and insert some values, how to find the max value of a result set, and how to join tables together.</p>
+      <p>First we need some data to work with. The following snippet will create a temporary table and then insert some values.</p>
+    </div>
+    <pre><code class="language-sql">
+DROP TABLE IF EXISTS movies;
+CREATE TEMP TABLE movies(
+movie_id integer PRIMARY KEY
+,title varchar(50)
+,distributor varchar(50)
+,gross numeric(15,2)
+);
+INSERT INTO movies(movie_id, title, distributor, gross)
+VALUES
+(1, 'Batman v Superman: Dawn of Justice', 'Warner Bros.',  851883636)
+,(2, 'Deadpool', '20th Century Fox', 760230467)
+,(3, 'From Vegas to Macau III', 'Bona Film Group', 182581250)
+,(4, 'Kung Fu Panda 3', '20th Century Fox', 504385208)
+,(5, 'London Has Fallen', 'Focus Features / Lionsgate', 182663575)
+,(6, 'The Divergent Series: Allegiant', 'Summit Entertainment', 155656191)
+,(7, 'The Jungle Book', 'Disney', 533513247)
+,(8, 'The Mermaid', 'Columbia', 552521248)
+,(9, 'The Monkey King 2', 'Filmko Entertainment', 193677158)
+,(10, 'Zootopia', 'Disney', 908504151)
+;
+select * from movies;
+    </code></pre>
+    <div class="portfolio-content">
+      <p>And here is the output of the select statement.</p>
+    </div>
+    <table>
+      <thead><tr><th>id</th><th>title</th><th>distributor</th><th>gross</th></tr></thead><tbody>
+    <tr><td>1</td><td>Batman v Superman: Dawn of Justice</td><td>Warner Bros.</td><td>851883636</td></tr>
+    <tr><td>2</td><td>Deadpool</td><td>20th Century Fox</td><td>760230467</td></tr>
+    <tr><td>3</td><td>From Vegas to Macau III</td><td>Bona Film Group</td><td>182581250</td></tr>
+    <tr><td>4</td><td>Kung Fu Panda 3</td><td>20th Century Fox</td><td>504385208</td></tr>
+    <tr><td>5</td><td>London Has Fallen</td><td>Focus Features / Lionsgate</td><td>182663575</td></tr>
+    <tr><td>6</td><td>The Divergent Series: Allegiant</td><td>Summit Entertainment</td><td>155656191</td></tr>
+    <tr><td>7</td><td>The Jungle Book</td><td>Disney</td><td>533513247</td></tr>
+    <tr><td>8</td><td>The Mermaid</td><td>Columbia</td><td>552521248</td></tr>
+    <tr><td>9</td><td>The Monkey King 2</td><td>Filmko Entertainment</td><td>193677158</td></tr>
+    <tr><td>10</td><td>Zootopia</td><td>Disney</td><td>908504151</td></tr>
+    </tbody></table>
+    <div class="portfolio-content">
+      <p>Now that we have some data lets find the top grossing movie.</p>
+      <p>Here I'm using a windowing function and sorting the gross column in descending order. I'm then creating a column labeled rn for row number
+      and then filtering rn to equal 1 giving me the top grossing movie Zootopia.
+      </p>
+    </div>
+    <pre><code class="language-sql">
+select *
+from
+(
+select
+*,
+ROW_NUMBER() OVER (order by gross desc) as rn
+from
+movies
+) t
+where
+t.rn = 1;</code></pre>
+    <p>And the output.</p>
+    <table class="tableizer-table">
+      <thead><tr class="tableizer-firstrow"><th>id</th><th>title</th><th>distributor</th><th>gross</th></tr></thead><tbody>
+    <tr><td>10</td><td>Zootopia</td><td>Disney</td><td>908504151</td></tr>
+    </tbody></table>
+    <div class="portfolio-content">
+      <p>Lets look at what a join can do for us.</p>
+      <p>I'm creating a lookup table that holds the movie_id to join to so we can find the rating for each movie.</p>
+    </div>
+    <pre><code class="language-sql">
+DROP TABLE IF EXISTS movie_ratings;
+CREATE TEMP TABLE movie_ratings(
+movie_id integer PRIMARY KEY
+,rating numeric(3,0)
+);
+INSERT INTO movie_ratings(movie_id, rating)
+VALUES
+(1, 2)
+,(2, 4)
+,(3, 9)
+,(4, 5)
+,(5, 8)
+,(6, 3)
+,(7, 1)
+,(8, 7)
+,(9, 10)
+,(10, 6)
+;</code></pre>
+    <div class="portfolio-content">
+      <p>Now we can inner join the movies table to the movie_ratings table on the movie_id column.</p>
+    </div>
+    <pre><code class="language-sql">
+select 		title, gross, rating
+from 		movies
+inner join 	movie_ratings
+on 		    movies.movie_id = movie_ratings.movie_id
+order by 	rating
+;</code></pre>
+    <div class="portfolio-content">
+      <p>And the results.</p>
+    </div>
+    <table>
+      <thead><tr><th>title</th><th>gross</th><th>rating</th></tr></thead><tbody>
+    <tr><td>The Jungle Book</td><td>533513247</td><td>1</td></tr>
+    <tr><td>Batman v Superman: Dawn of Justice</td><td>851883636</td><td>2</td></tr>
+    <tr><td>The Divergent Series: Allegiant</td><td>155656191</td><td>3</td></tr>
+    <tr><td>Deadpool</td><td>760230467</td><td>4</td></tr>
+    <tr><td>Kung Fu Panda 3</td><td>504385208</td><td>5</td></tr>
+    <tr><td>Zootopia</td><td>908504151</td><td>6</td></tr>
+    <tr><td>The Mermaid</td><td>552521248</td><td>7</td></tr>
+    <tr><td>London Has Fallen</td><td>182663575</td><td>8</td></tr>
+    <tr><td>From Vegas to Macau III</td><td>182581250</td><td>9</td></tr>
+    <tr><td>The Monkey King 2</td><td>193677158</td><td>10</td></tr>
+    </tbody></table>
+    <div class="portfolio-content">
+      <p>The Jungle Book wins! I really need to watch that movie.</p>
+      <p>I hope you've enjoyed going through this exercise with me.</p>
+    </div>
+    <br>
+  </div>
+</script>
 <script src="js/lib/jquery-2.2.0.min.js"></script>
 <script src="js/lib/underscore-min.js"></script>
+<script src="js/lib/prism.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>

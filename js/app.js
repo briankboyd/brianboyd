@@ -9,15 +9,26 @@ window.bb = (function(bb, $, _) {
     escape: /\{\{-(.*?)\}\}/g
   };
 
-  function mainNavSetup() {
-    var links = getNav();
-    links.on('click.nav', 'ul li' , function(e) {
-      e.preventDefault();
+  function hello() {
+    console.log('fuck you');
+  }
+  function styleNav(options) {
+    var links = options.links;
+    var event = options.event;
+    links.on(event, 'ul li' , function(evt) {
+      evt.preventDefault();
       var items = $(this).addClass(bb.sel.class.navColor).siblings();
       $(this).find('i').addClass(bb.sel.class.navColorI);
       items.removeClass(bb.sel.class.navColor);
       items.find('i').removeClass(bb.sel.class.navColorI);
     });
+  }
+  function mainNavSetup() {
+    var options = {
+      links: getNav(),
+      event: 'click.nav'
+    };
+    bb.evt.styleNav(options);
   }
   function getNav() {
     return $(bb.sel.mainNav);
@@ -34,21 +45,12 @@ window.bb = (function(bb, $, _) {
     $(bb.sel.content).html(_.template(tmpl));
   }
   function blogView() {
-    var tmpl = $(bb.sel.blogTmpl).html();
-    $(bb.sel.content).html(_.template(tmpl));
+    window.location.reload();
   }
   function portfolioView() {
-    var tmpl = $(bb.sel.portfolioTmpl).html();
     var navTmpl = $(bb.sel.portfolioSideNavTmpl).html();
-    var isMobile = ($(bb.sel.bbNav).css('display')) === 'none';
-    $(bb.sel.content).html(_.template(tmpl));
-    if(isMobile) {
-
-    } else {
-      $(bb.sel.bbNav).html(_.template(navTmpl));
-    }
-
-
+    $(bb.sel.bbNav).html(_.template(navTmpl));
+    $(bb.sel.portfolioSummary).trigger('click');
   }
   function homeEvents() {
     $(bb.sel.homeNav).on('click', function(e) {
@@ -75,10 +77,76 @@ window.bb = (function(bb, $, _) {
     });
   }
   function portfolioEvents() {
-    $(bb.sel.portfolioNav).on('click', function(e) {
+    var contentBody = $(bb.sel.contentBody);
+    $(bb.sel.portfolioNav).on('click', function (e) {
       e.preventDefault();
       bb.view.portfolio.render();
       bb.evt.checkPopState(bb.view.portfolio.name);
+    });
+
+    //open hidden menu
+    contentBody.on('click', bb.sel.portfolioDrawer, function () {
+      $(bb.sel.contentBody).toggleClass(bb.sel.class.openDrawer);
+    });
+
+    //close the nav if click anywhere else than the nav icon
+    $(document).click(function (evt) {
+      if (!$(evt.target).closest(bb.sel.portfolioDrawer).length && !$(evt.target).is(bb.sel.portfolioDrawer)) {
+        if (contentBody.hasClass(bb.sel.class.openDrawer)) {
+          contentBody.removeClass(bb.sel.class.openDrawer);
+        }
+      }
+    });
+    //style navs
+    var portfolioNavOptions = {
+      links: $(bb.sel.bbNav),
+      event: 'click.portfolioNav'
+    };
+    bb.evt.styleNav(portfolioNavOptions);
+
+    var tmpl = $(bb.sel.portfolioTmpl).html();
+    var bbMain = $(bb.sel.content);
+    //load summary template
+    contentBody.on('click', bb.sel.portfolioSummary, function() {
+      var content = $(bb.sel.portfolioSummaryTmpl).html();
+      bbMain.html(_.template(content));
+      bbMain.append(_.template(tmpl));
+      Prism.highlightAll();
+    });
+    //load java template
+    contentBody.on('click', bb.sel.portfolioJava, function() {
+      var content = $(bb.sel.portfolioJavaTmpl).html();
+      bbMain.html(_.template(content));
+      bbMain.append(_.template(tmpl));
+      Prism.highlightAll();
+    });
+    //load javascript template
+    contentBody.on('click', bb.sel.portfolioJavascript, function() {
+      var content = $(bb.sel.portfolioJavascriptTmpl).html();
+      bbMain.html(_.template(content));
+      bbMain.append(_.template(tmpl));
+      Prism.highlightAll();
+    });
+    //load nodejs template
+    contentBody.on('click', bb.sel.portfolioNode, function() {
+      var content = $(bb.sel.portfolioNodeJSTmpl).html();
+      bbMain.html(_.template(content));
+      bbMain.append(_.template(tmpl));
+      Prism.highlightAll();
+    });
+    //load php template
+    contentBody.on('click', bb.sel.portfolioPHP, function() {
+      var content = $(bb.sel.portfolioPHPTmpl).html();
+      bbMain.html(_.template(content));
+      bbMain.append(_.template(tmpl));
+      Prism.highlightAll();
+    });
+    //load sql template
+    contentBody.on('click', bb.sel.portfolioSQL, function() {
+      var content = $(bb.sel.portfolioSQLTmpl).html();
+      bbMain.html(_.template(content));
+      bbMain.append(_.template(tmpl));
+      Prism.highlightAll();
     });
   }
   function getRoute() {
@@ -138,8 +206,10 @@ window.bb = (function(bb, $, _) {
   };
   //selectors
   bb.sel = {
-    mainNav: '.main-nav',
+    mainNav: '#mainNav',
     content: '#bbMain',
+    bbNav: '#bbNav',
+    contentBody: '#contentBody',
     homeNav: '#homeNav',
     homeTmpl: '#homeTmpl',
     appsNav: '#appsNav',
@@ -149,11 +219,24 @@ window.bb = (function(bb, $, _) {
     portfolioNav: '#portfolioNav',
     portfolioTmpl: '#portfolioTmpl',
     portfolioSideNavTmpl: '#portfolioSideNavTmpl',
-    bbNav: '#bbNav',
+    portfolioDrawer: '#portfolioDrawer',
+    portfolioSummaryTmpl: '#portfolioSummaryTmpl',
+    portfolioSummary: '#portfolioSummary',
+    portfolioJavaTmpl: '#portfolioJavaTmpl',
+    portfolioJava: '#portfolioJava',
+    portfolioJavascript: '#portfolioJavascript',
+    portfolioJavascriptTmpl: '#portfolioJavascriptTmpl',
+    portfolioNode: '#portfolioNode',
+    portfolioNodeJSTmpl: '#portfolioNodeJSTmpl',
+    portfolioPHP: '#portfolioPHP',
+    portfolioPHPTmpl: '#portfolioPHPTmpl',
+    portfolioSQL: '#portfolioSQL',
+    portfolioSQLTmpl: '#portfolioSQLTmpl',
     class: {
       navColor: 'nav-color',
       navColorI: 'nav-color-i',
-      NavColorReset: 'nav-color-reset'
+      NavColorReset: 'nav-color-reset',
+      openDrawer: 'open-drawer'
     }
   };
   //dom events
@@ -161,6 +244,7 @@ window.bb = (function(bb, $, _) {
     onLoad: onLoad,
     onPopState: onPopState,
     loadView: loadView,
+    styleNav: styleNav,
     mainNavSetup: mainNavSetup,
     homeEvents: homeEvents,
     appsEvents: appsEvents,

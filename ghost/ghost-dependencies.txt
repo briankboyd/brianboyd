@@ -1,0 +1,10 @@
+npm install bcryptjs bluebird body-parser bookshelf chalk cheerio commander
+npm install compression concat-stream connect-slashes content-type cookie-session
+npm install cors downsize express express-hbs extract-zip fs-extra ghost-gql glob
+npm install html-to-text http-errors iconv-lite inherits ini intl intl-messageformat
+npm install jsonpath knex lodash mime-types minimatch minimist moment morgan multer
+npm install mysql nodemailer node-uuid nopt oauth2orize on-finished on-headers passport
+npm install passport-http-bearer passport-oauth2-client-password passport-strategy path-match
+npm install pg pg-connection-string request rss semver showdown-ghost sqlite3 statuses
+npm install tough-cookie type-is unidecode unpipe utils-merge validator xml xtend
+npm install jsonpath lodash moment morgan multer
